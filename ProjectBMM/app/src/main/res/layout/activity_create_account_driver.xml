@@ -23,7 +23,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditTextBlack"
+                android:theme="@style/EditTextGrey"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount">
 
                 <android.support.design.widget.TextInputEditText
@@ -37,7 +37,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditTextBlack"
+                android:theme="@style/EditTextGrey"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount">
 
                 <android.support.design.widget.TextInputEditText
@@ -51,7 +51,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditTextBlack"
+                android:theme="@style/EditTextGrey"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount">
 
                 <android.support.design.widget.TextInputEditText
@@ -65,21 +65,35 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditTextBlack"
-                android:layout_marginTop="@dimen/edittext_margin_createaccount">
+                android:layout_marginTop="@dimen/edittext_margin_createaccount"
+                android:theme="@style/EditTextGrey">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/user_createAccount"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/hint_user_id"
-                    android:inputType="text"/>
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/user_createAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/hint_user_id"
+                        android:inputType="text"
+                        android:width="250dp"/>
+
+                    <ImageButton
+                        android:id="@+id/btn_Insert_Image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@android:drawable/ic_menu_camera" />
+                </LinearLayout>
+
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditTextBlack"
+                android:theme="@style/EditTextGrey"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount">
 
                 <android.support.design.widget.TextInputEditText
@@ -93,7 +107,7 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditTextBlack"
+                android:theme="@style/EditTextGrey"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount">
 
                 <android.support.design.widget.TextInputEditText
@@ -107,19 +121,19 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/EditTextBlack"
+                android:theme="@style/EditTextGrey"
                 android:layout_marginTop="@dimen/edittext_margin_createaccount">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/confirm_password_createAccount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/hint_email"
+                    android:hint="@string/hint_confirm_password"
                     android:inputType="textPassword"/>
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/signInLogin"
+                android:id="@+id/register_button_createAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Register_Account"
