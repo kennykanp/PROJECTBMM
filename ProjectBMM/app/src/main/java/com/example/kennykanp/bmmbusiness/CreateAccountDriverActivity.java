@@ -40,6 +40,10 @@ public class CreateAccountDriverActivity extends BaseActivity implements View.On
     private StorageReference mStorage;
     private  static final int GALLERY_INTENT = 2;
 
+    FirebaseDatabase database =FirebaseDatabase.getInstance();
+    final DatabaseReference Ref=database.getReference(FirebaseReference.BMM_REFERENCES);
+    Driver driver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +107,7 @@ public class CreateAccountDriverActivity extends BaseActivity implements View.On
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(CreateAccountDriverActivity.this, "Upload Done.",Toast.LENGTH_LONG).show();
+
                 }
             });
         }
@@ -113,8 +118,7 @@ public class CreateAccountDriverActivity extends BaseActivity implements View.On
             return;
         }
         showProgressDialog();
-        FirebaseDatabase database =FirebaseDatabase.getInstance();
-        final DatabaseReference Ref=database.getReference(FirebaseReference.BMM_REFERENCES);
+
         String Name = tvName.getText().toString();
         String LastName = tvLastName.getText().toString();
         String NumberPhone = tvPhoneNumber.getText().toString();
@@ -123,13 +127,11 @@ public class CreateAccountDriverActivity extends BaseActivity implements View.On
         String Password = tvPassword.getText().toString();
         //String Photo = tvPhoto.getText().toString();
 
-        //Save Data
-        Driver driver=new Driver(Name,LastName,NumberPhone, Email, User, Password,"this photo");
-        Ref.child(FirebaseReference.DRIVE_REFERENCES).push().setValue(driver);
+        driver =new Driver(Name,LastName,NumberPhone, Email, User, Password,"this photo");
+
         //Create Account
         createAccount(Email, Password);
-        Toast.makeText(this,"Usuario Agregado", Toast.LENGTH_SHORT).show();
-        CleanField();
+
         hideProgressDialog();
     }
 
@@ -145,12 +147,19 @@ public class CreateAccountDriverActivity extends BaseActivity implements View.On
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            //Save Data
+                            Ref.child(FirebaseReference.DRIVE_REFERENCES).push().setValue(driver);
+                            Toast.makeText(CreateAccountDriverActivity.this,"Usuario Agregado", Toast.LENGTH_SHORT).show();
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(CreateAccountDriverActivity.this, "Authentication sucess.",
                                     Toast.LENGTH_SHORT).show();
-
+                            Intent intent = new Intent(CreateAccountDriverActivity.this, MainActivity.class);
+                            finish();
+                            CleanField();
+                            startActivity(intent);
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

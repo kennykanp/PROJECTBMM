@@ -24,8 +24,6 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
 
     private FirebaseAuth mAuth;
 
-    private TextView mStatusTextView;
-    private TextView mDetailTextView;
     private EditText mEmailField;
     private EditText mPasswordField;
 
@@ -47,8 +45,10 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
     }
 
     public void goCreateAccount(View view){
+        showProgressDialog();
         Intent intent = new Intent(this, CreateAccountDriverActivity.class);
         startActivity(intent);
+        hideProgressDialog();
     }
 
     private void signIn(String email, String password) {
@@ -69,9 +69,9 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(LoginDriveActivity.this, MainActivity.class);
+                            finish();
                             clean();
                             startActivity(intent);
-
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -97,21 +97,24 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
         boolean valid = true;
 
         String email = mEmailField.getText().toString();
-        if (TextUtils.isEmpty(email)) {
-            mEmailField.setError("Required.");
+
+        if (TextUtils.isEmpty(email) ) {
+            mEmailField.setError(getString(R.string.error_invalid_email));
             valid = false;
-        } else {
-            mEmailField.setError(null);
+        }else if(!email.toString().contains("@")){
+
+        }
+        else if (email == null) {
+
         }
 
         String password = mPasswordField.getText().toString();
         if (TextUtils.isEmpty(password)) {
             mPasswordField.setError("Required.");
             valid = false;
-        } else {
-            mPasswordField.setError(null);
-        }
+        } else if (password == null) {
 
+        }
         return valid;
     }
 
@@ -124,5 +127,11 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
         mEmailField.requestFocus();
         mEmailField.setText("");
         mPasswordField.setText("");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }
