@@ -21,7 +21,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,7 +34,7 @@ public class MyLocationActivity extends FragmentActivity implements OnMapReadyCa
     GoogleApiClient mGoogleApiCliente;
     Location mLastLocation;
     LocationRequest mLocationRequest;
-
+    boolean conectedSecundaryDB = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +87,28 @@ public class MyLocationActivity extends FragmentActivity implements OnMapReadyCa
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(12));
 
+        while (conectedSecundaryDB){
+            FirebaseOptions options = new FirebaseOptions.Builder()
+                    .setApplicationId("com.jhon.appandroidfinal") // Required for Analytics.
+                    .setApiKey("AIzaSyClp8MYHEYNw4op7PBNWnyR0onc9EMlwL0") // Required for Auth.
+                    .setDatabaseUrl("https://today-da603.firebaseio.com/") // Required for RTDB.
+                    .build();
 
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("bmm-driver");
+            FirebaseApp.initializeApp(this,options,"today-da603");
+            conectedSecundaryDB = false;
+        }
+
+        FirebaseApp app = FirebaseApp.getInstance("today-da603");
+        FirebaseDatabase secondaryDatabase = FirebaseDatabase.getInstance(app);
+
+        //String userId = secondaryDatabase.getReference("driverId").push().getKey();
+
+        FirebaseAuth fireAuth = FirebaseAuth.getInstance();
+
+        DatabaseReference ref = secondaryDatabase.getReference("DriverLocation");
+
+        //"ImPCvS8PjtT28I9rC1LjimDDdw32";
+        String userId = fireAuth.getCurrentUser().getUid();
 
         GeoFire geoFire = new GeoFire(ref);
         geoFire.setLocation(userId, new GeoLocation(location.getLatitude(), location.getLongitude()));

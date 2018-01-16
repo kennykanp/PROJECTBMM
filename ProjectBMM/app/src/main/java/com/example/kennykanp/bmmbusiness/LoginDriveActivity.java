@@ -45,7 +45,7 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
     }
 
     public void goCreateAccount(View view){
-        showProgressDialog();
+        showProgressDialog("Open create account...");
         Intent intent = new Intent(this, CreateAccountDriverActivity.class);
         startActivity(intent);
         hideProgressDialog();
@@ -57,7 +57,7 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
             return;
         }
 
-        showProgressDialog();
+        showProgressDialog("Loading...");
 
         // [START sign_in_with_email]
         mAuth.signInWithEmailAndPassword(email, password)
@@ -67,10 +67,10 @@ public class LoginDriveActivity extends BaseActivity implements View.OnClickList
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //FirebaseUser user = mAuth.getCurrentUser();
                             Intent intent = new Intent(LoginDriveActivity.this, MainActivity.class);
-                            finish();
-                            clean();
+                            //finish();
+                            //clean();
                             startActivity(intent);
                             //updateUI(user);
                         } else {

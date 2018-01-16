@@ -117,7 +117,7 @@ public class CreateAccountDriverActivity extends BaseActivity implements View.On
         if (!validateForm()) {
             return;
         }
-        showProgressDialog();
+        showProgressDialog("Creating account driver");
 
         String Name = tvName.getText().toString();
         String LastName = tvLastName.getText().toString();
@@ -139,7 +139,7 @@ public class CreateAccountDriverActivity extends BaseActivity implements View.On
 
         Log.d(TAG, "createAccount:" + email);
 
-        showProgressDialog();
+        showProgressDialog("Creating Account");
 
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
