@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "27500421870",
+    "firebase_url": "https://bmm-business.firebaseio.com",
+    "project_id": "bmm-business",
+    "storage_bucket": "bmm-business.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27500421870:android:2a8ad1ccd999fce9",
+        "android_client_info": {
+          "package_name": "com.example.kennykanp.bmmbusiness"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27500421870-76jijfb930q9j6ugu6v7m3rj9mfag3bs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kennykanp.bmmbusiness",
+            "certificate_hash": "3e0ee9dc6972b764e1239fa9dfcbdbb01f1991d8"
+          }
+        },
+        {
+          "client_id": "27500421870-fcnt92f2ug8rmpg1fjhfr3kidk7pfak2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKX3qiuZKcZp1jOOXbYCHz9o_IthWmS3M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27500421870-fcnt92f2ug8rmpg1fjhfr3kidk7pfak2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
